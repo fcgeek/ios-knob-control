@@ -574,4 +574,7 @@ static const NSInteger IKCGTap DEPRECATED_MSG_ATTRIBUTE("Use IKCGestureTap inste
  */
 - (void)dialNumber:(int)number;
 
+#pragma mark - 自定义方法
+- (void) addGesture:(IKCGesture)gesture;
+
 @end

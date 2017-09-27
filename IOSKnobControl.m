@@ -1297,6 +1297,24 @@ static CGRect adjustFrame(CGRect frame, CGFloat fingerHoleRadius) {
     [self addGestureRecognizer:gestureRecognizer];
 }
 
+- (void) addGesture:(IKCGesture)gesture {
+    UIGestureRecognizer* newGestureRecognizer;
+    if (gesture == IKCGestureOneFingerRotation) {
+        newGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    }
+    else if (gesture == IKCGestureTwoFingerRotation) {
+        newGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
+    }
+    else if (gesture == IKCGestureVerticalPan) {
+        newGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleVerticalPan:)];
+    }
+    else if (gesture == IKCGestureTap)
+    {
+        newGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    }
+    [self addGestureRecognizer:newGestureRecognizer];
+}
+
 // DEBT: Factor this stuff into a separate GR?
 - (void)handlePan:(UIPanGestureRecognizer *)sender
 {
